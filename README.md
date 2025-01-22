@@ -1,5 +1,4 @@
-# productmapper
-Mapowanie produktów z Sellasist na ID w Shoperze
+# Mapowanie produktów z Sellasist na ID w Shoperze
 
 Skrypt pozwoli mapować produkty z Shopera na produkty w Sellasist. 
 
