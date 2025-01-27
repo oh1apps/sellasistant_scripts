@@ -1,21 +1,19 @@
 # Skrypty pomocnicze dla rozszerzenia Chrome Sellasistant
 
-## mapper.php
-Skrypt pozwoli mapować produkty z Shopera na produkty w Sellasist. Może być używany niezależnie od Sellasistanta.
+### Instalacja
+1. Wrzuć skrypty na serwer do jednego katalogu
+2. Dostosuj zmienne w pliku config.php
+3. W ustawieniach Sellasistanta podaj adresy skryptów
 
-### Instalacja i obsługa:
+## Skrypty:
 
-1. Wrzuć plik na serwer
-2. Dostosuj zmienne
-3. Przeglądarkę skieruj na adres skryptu lub wpisz adres w ustawieniach rozszerzenia
+### mapper.php
+Pozwola mapować produkty z Shopera na produkty w Sellasist. Może być używany niezależnie od Sellasistanta - po prostu skieruj przeglądarkę na adres skryptu.
 
 ![image](https://github.com/user-attachments/assets/4b713f3d-7084-49d2-b793-2fa189f4278e)
 
-## postal.php
-Odpytuje API i pobiera nazwę miejscowości po kodzie ocztowym 
+### postal.php
+Odpytuje API, pobiera nazwę miejscowości po kodzie pocztowym i wstawia w pole na Miejscowość na stronie zamówienia
 
-### Instalacja i obsługa:
-
-1. Wrzuć plik na serwer
-2. Wpisz adres skryptu w ustawieniach rozszerzenia
-
+### sa_connector.php
+Komunikujacja z API Sellasista
