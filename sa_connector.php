@@ -4,8 +4,7 @@ require_once('config.php');
 
 //Pobieranie zamówienia
 
-function get_sa_order($order_id)
-{
+function get_sa_order($order_id) {
 
     global $sa_api_url, $sa_api_key;
 
@@ -43,8 +42,7 @@ function get_sa_order($order_id)
 
 // Mapowanie produktów
 
-function map_product($product_id, $data)
-{
+function map_product($product_id, $data) {
 
     global $sa_api_url, $sa_api_key;
 
@@ -59,7 +57,7 @@ function map_product($product_id, $data)
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'PUT',
-        CURLOPT_POSTFIELDS => $data,
+        CURLOPT_POSTFIELDS => json_encode($data),
         CURLOPT_HTTPHEADER => array(
             'apiKey: ' . $sa_api_key,
             'Content-Type: application/json'
@@ -70,9 +68,13 @@ function map_product($product_id, $data)
 
     curl_close($curl);
 
-    if (curl_errno($curl)) {
-        echo '<div class="alert alert-danger mt-3">Wystąpił błąd: ' . curl_error($curl) . '</div>';
+    $json = json_decode($response, true);
+
+    if (isset($json['error'])) {
+
+        echo '<div class="alert alert-danger mt-3">' . htmlspecialchars($response) . '</div>';
     } else {
-        echo '<div class="alert alert-success mt-3">Odpowiedź API: ' . htmlspecialchars($response) . '</div>';
+
+        echo '<div class="alert alert-success mt-3">' . 'Zmapowano ' . htmlspecialchars($response) . '</div>';
     }
 }

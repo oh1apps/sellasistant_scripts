@@ -1,6 +1,8 @@
 <?php
 
 require_once('config.php');
+require_once('sa_connector.php');
+
 session_start();
 
 // Logowanie
@@ -79,23 +81,23 @@ if (isset($_POST['password']) && $_POST['password'] === $mapper_password || isse
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productID'], $_POST['externalID'])) {
 
-            $productID = $_POST['productID'];
-            $externalID = $_POST['externalID'];
+            $product_id = $_POST['productID'];
+            $external_id = $_POST['externalID'];
             $variant = $_POST['variant'];
 
             if (!empty($variant)) {
-                $$externalID .= '-' . $variant;
+                $external_id .= '-' . $variant;
             }
 
             $data = [
                 "external_shops_mappings" => [
                     [
                         "shop_id" => $shop_id,
-                        "foreign_id" => $externalID
+                        "foreign_id" => $external_id
                     ]
                 ]
             ];
-
+            
             map_product($product_id, $data);
         }
         ?>
