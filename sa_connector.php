@@ -121,3 +121,42 @@ function update_order($update, $order_id)
         exit();
     }
 }
+
+// Wyszukiwanie zamówień
+
+function search_orders($email) {
+
+    global $sa_api_url, $sa_api_key;
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => $sa_api_url . 'orders/?email=' . $email,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'apiKey: ' . $sa_api_key
+        ),
+      ));
+
+    $response = curl_exec($curl);
+    $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+    curl_close($curl);
+
+    if ($http_code == 200) {
+
+        return $response;
+
+    } else {
+
+        echo ("Błąd wyszukiwania zamówień dla $email: $http_code: $response");
+
+        exit();
+    }
+}
