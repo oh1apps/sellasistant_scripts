@@ -1,5 +1,8 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+
 require_once('config.php');
 
 //Pobieranie zamówienia
@@ -124,7 +127,13 @@ function update_order($update, $order_id)
 
 // Wyszukiwanie zamówień
 
-function search_orders($email) {
+if (isset($_GET['email'])) {
+
+    search_orders($_GET['email']);
+}
+
+function search_orders($email)
+{
 
     global $sa_api_url, $sa_api_key;
 
@@ -140,9 +149,9 @@ function search_orders($email) {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'GET',
         CURLOPT_HTTPHEADER => array(
-          'apiKey: ' . $sa_api_key
+            'apiKey: ' . $sa_api_key
         ),
-      ));
+    ));
 
     $response = curl_exec($curl);
     $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
@@ -152,10 +161,9 @@ function search_orders($email) {
     if ($http_code == 200) {
 
         return $response;
-
     } else {
 
-        echo ("Błąd wyszukiwania zamówień dla $email: $http_code: $response");
+        echo ($response);
 
         exit();
     }

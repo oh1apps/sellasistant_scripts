@@ -2,21 +2,17 @@
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
-$post_code = $_GET['code'] ?? '';
+if (isset($_GET['code'])) {
 
-if (empty($post_code)) {
-    echo json_encode(['error' => 'Nie podano kodu']);
-    exit;
-}
+    $post_code_api = "http://kodpocztowy.intami.pl/api/" . urlencode($_GET['code']);
 
-$post_code_api = "http://kodpocztowy.intami.pl/api/" . urlencode($post_code);
+    $response = file_get_contents($post_code_api);
 
-$response = file_get_contents($post_code_api);
+    $address_data = json_decode($response, true);
 
-$address_data = json_decode($response, true);
-
-if ($address_data && isset($address_data[0]['miejscowosc'])) {
-    echo json_encode(['city' => $address_data[0]['miejscowosc']]);
-} else {
-    echo json_encode(['error' => 'Nie odnaleziono miejscowości']);
+    if ($address_data && isset($address_data[0]['miejscowosc'])) {
+        echo json_encode(['city' => $address_data[0]['miejscowosc']]);
+    } else {
+        echo json_encode(['error' => 'Nie odnaleziono miejscowości']);
+    }
 }

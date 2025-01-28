@@ -18,4 +18,3 @@ $update = [
 ];
 
 update_order($update, $order_id);
-
