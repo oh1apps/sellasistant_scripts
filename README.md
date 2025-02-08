@@ -16,6 +16,7 @@ Pozwola mapować produkty z Shopera na produkty w Sellasist. Może być używany
 Odpytuje API, pobiera nazwę miejscowości po kodzie pocztowym i wstawia w pole na Miejscowość na stronie zamówienia
 
 ### mail_shortener.php
+##⚠️ UWAGA! Jeśli użyjesz shortenera nie będzie możliwe nadawanie przesyłek z nowym WzA - zalecane jest nie korzystanie z tej funkcji dopóki nie opublikowana zostanie poprawka skryptu lub Sellasistanta
 Skraca adres Allegro z abc+xyz@allegromail.pl do abc@allegromail.pl aby umożliwić wyszukiwanie zamówień w Responso.
 W Sellasist należy ustawić akcję automatyczną "WYWOŁAJ URL":
 
