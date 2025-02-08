@@ -10,10 +10,16 @@
 ### mapper.php
 Pozwola mapować produkty z Shopera na produkty w Sellasist. Może być używany niezależnie od Sellasistanta - poprostu skieruj przeglądarkę na adres skryptu.
 
-![image](https://github.com/user-attachments/assets/4b713f3d-7084-49d2-b793-2fa189f4278e)
+![image](./images/mapper.png)
 
 ### postal.php
 Odpytuje API, pobiera nazwę miejscowości po kodzie pocztowym i wstawia w pole na Miejscowość na stronie zamówienia
+
+### mail_shortener.php
+Skraca adres Allegro z abc+xyz@allegromail.pl do abc@allegromail.pl aby umożliwić wyszukiwanie zamówień w Responso.
+W Sellasist należy ustawić akcję automatyczną "WYWOŁAJ URL":
+
+![image](./images/mail_shortener.png)
 
 ### sa_connector.php
 Komunikujacja z API Sellasista
