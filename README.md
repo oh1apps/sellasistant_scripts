@@ -8,7 +8,7 @@
 ## Skrypty:
 
 ### mapper.php
-Pozwola mapować produkty z Shopera na produkty w Sellasist. Może być używany niezależnie od Sellasistanta - po prostu skieruj przeglądarkę na adres skryptu.
+Pozwola mapować produkty z Shopera na produkty w Sellasist. Może być używany niezależnie od Sellasistanta - poprostu skieruj przeglądarkę na adres skryptu.
 
 ![image](https://github.com/user-attachments/assets/4b713f3d-7084-49d2-b793-2fa189f4278e)
 
