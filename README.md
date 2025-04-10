@@ -15,6 +15,9 @@ Pozwola mapować produkty z Shopera na produkty w Sellasist. Może być używany
 ### postal.php
 Odpytuje API, pobiera nazwę miejscowości po kodzie pocztowym i wstawia w pole na Miejscowość na stronie zamówienia
 
+## pna.dp
+Baza danych zawwierająca aktualne Miejscowości i kody (stan na styczeń 2025). Struktura bazy: tabela pna_2025, kolumny code oraz city
+
 ### mail_shortener.php
 ## ⚠️ UWAGA! Jeśli użyjesz shortenera nie będzie możliwe nadawanie przesyłek z nowym WzA - zalecane jest nie korzystanie z tej funkcji dopóki nie opublikowana zostanie poprawka skryptu lub Sellasistanta
 Skraca adres Allegro z abc+xyz@allegromail.pl do abc@allegromail.pl aby umożliwić wyszukiwanie zamówień w Responso.

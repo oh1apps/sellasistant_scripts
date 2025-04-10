@@ -3,16 +3,35 @@ header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
 if (isset($_GET['code'])) {
+    $code = $_GET['code'];
 
-    $post_code_api = "http://kodpocztowy.intami.pl/api/" . urlencode($_GET['code']);
+    try {
 
-    $response = file_get_contents($post_code_api);
+        $dbPath = __DIR__ . '/pna.db';
+        $db = new PDO('sqlite:' . $dbPath);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $address_data = json_decode($response, true);
+        $stmt = $db->prepare('SELECT DISTINCT city FROM pna_2025 WHERE code = :code');
+        $stmt->bindParam(':code', $code, PDO::PARAM_STR);
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    if ($address_data && isset($address_data[0]['miejscowosc'])) {
-        echo json_encode(['city' => $address_data[0]['miejscowosc']]);
-    } else {
-        echo json_encode(['error' => 'Nie odnaleziono miejscowości']);
+        if ($rows && count($rows) > 0) {
+            if (count($rows) === 1) {
+                echo json_encode(['city' => $rows[0]['city']]);
+            } else {
+                $result = array_map(function($row) {
+                    return ['city' => $row['city']];
+                }, $rows);
+                echo json_encode($result);
+            }
+        } else {
+            echo json_encode(['city' => 'Nie odnaleziono miejscowości']);
+        }
+    } catch (PDOException $e) {
+        echo json_encode(['city' => 'Błąd połączenia z bazą danych: ' . $e->getMessage()]);
     }
+} else {
+    echo json_encode(['city' => 'Nie podano kodu']);
 }
+?>
