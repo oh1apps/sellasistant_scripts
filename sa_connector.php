@@ -125,13 +125,6 @@ function update_order($update, $order_id)
     }
 }
 
-// Wyszukiwanie zamówień
-
-if (isset($_GET['email'])) {
-
-    search_orders($_GET['email']);
-}
-
 function search_orders($email)
 {
 
